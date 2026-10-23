@@ -1,0 +1,239 @@
+<!-- filepath: index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sistema de planejamento estratégico, controle financeiro tático, prospecção B2B e aceleração de carreira em engenharia de software." />
+  <title>WAR ROOM 90D — Planejamento Tático & Execução B2B</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="src/css/design-system.css" />
+</head>
+<body>
+  <a href="#mainContent" class="skip-link">Pular para o conteúdo principal</a>
+
+  <div class="app-shell">
+    <header class="app-header" role="banner">
+      <div class="app-header__brand-col">
+        <button
+          type="button"
+          id="mobileMenuBtn"
+          class="btn btn--icon btn--ghost mobile-only"
+          data-action="toggle-sidebar"
+          aria-label="Abrir menu de navegação"
+          aria-expanded="false"
+          aria-controls="appSidebar"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="brand-trigger"
+          data-action="select-stage"
+          data-stage="0"
+          aria-label="Ir para a Visão Geral do War Room 90D"
+        >
+          <span class="brand-trigger__emblem" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+          </span>
+          <span class="brand-trigger__text">
+            <span class="brand-trigger__title-row">
+              <span class="brand-trigger__name">WAR ROOM 90D</span>
+              <span class="badge badge--info">Joinville • SC</span>
+            </span>
+            <span class="brand-trigger__subtitle">Finanças, Engenharia &amp; Vendas B2B</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="app-header__toolbar">
+        <div class="header-metrics">
+          <div class="header-progress" title="Progresso de domínio das 10 etapas">
+            <div class="header-progress__labels">
+              <span class="header-progress__title">Domínio 10 Etapas</span>
+              <span id="globalProgressText" class="header-progress__value">0%</span>
+            </div>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-label="Progresso geral das etapas"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              id="globalProgressTrack"
+            >
+              <div id="globalProgressBar" class="progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="header-pills" role="group" aria-label="Indicadores rápidos">
+            <button type="button" class="metric-pill" data-action="select-stage" data-stage="1">
+              <span class="metric-pill__label">Balanço:</span>
+              <span id="headerBalancePill" class="metric-pill__value">R$ 0,00</span>
+            </button>
+
+            <button type="button" class="metric-pill" data-action="select-stage" data-stage="4">
+              <span class="metric-pill__label">Freelas:</span>
+              <span id="headerFreelaPill" class="metric-pill__value">R$ 0,00 / R$ 2.000</span>
+            </button>
+
+            <button type="button" class="metric-pill" data-action="select-stage" data-stage="3">
+              <span class="metric-pill__label">Foco:</span>
+              <span id="headerOfferPill" class="metric-pill__value metric-pill__value--accent">Oferta #1</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button
+            type="button"
+            class="btn btn--icon btn--secondary"
+            data-action="toggle-theme"
+            aria-label="Alternar entre tema escuro e claro"
+            title="Alternar tema visual"
+          >
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn--secondary btn--sm"
+            data-action="export-backup"
+            aria-label="Exportar cópia de segurança em JSON"
+            title="Exportar Backup JSON"
+          >
+            <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>Backup</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn--secondary btn--sm"
+            data-action="open-import-modal"
+            aria-label="Importar arquivo de backup JSON"
+            title="Importar Backup JSON"
+          >
+            <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <span>Importar</span>
+          </button>
+
+          <input
+            type="file"
+            id="importFileInput"
+            class="sr-only"
+            accept=".json,application/json"
+            aria-label="Selecionar arquivo JSON de backup"
+          />
+
+          <button
+            type="button"
+            class="btn btn--icon btn--ghost btn--danger-hover"
+            data-action="open-reset-modal"
+            aria-label="Restaurar dados para o padrão inicial"
+            title="Restaurar dados padrão"
+          >
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+              <path d="M3 3v5h5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-workspace">
+      <aside id="appSidebar" class="app-sidebar" aria-label="Menu de etapas do plano">
+        <div class="app-sidebar__mobile-head mobile-only">
+          <span class="app-sidebar__mobile-title">Navegação Tática</span>
+          <button
+            type="button"
+            class="btn btn--icon btn--ghost"
+            data-action="close-sidebar"
+            aria-label="Fechar menu lateral"
+          >
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <nav id="sidebarNavContainer" class="sidebar-nav" aria-label="Etapas de 0 a 10"></nav>
+
+        <div class="app-sidebar__footer">
+          <div class="sidebar-rule">
+            <span class="sidebar-rule__label">Diretriz de Saúde:</span>
+            <span class="sidebar-rule__value">6h15 Sono • Dom Livre</span>
+          </div>
+          <div class="sidebar-sync">
+            <span>Persistência Local</span>
+            <span class="sidebar-sync__status">
+              <span class="status-dot" aria-hidden="true"></span>
+              Auto-Save Ativo
+            </span>
+          </div>
+        </div>
+      </aside>
+
+      <div
+        id="sidebarBackdrop"
+        class="sidebar-backdrop"
+        data-action="close-sidebar"
+        aria-hidden="true"
+      ></div>
+
+      <main id="mainContent" class="app-main" tabindex="-1">
+        <div id="stageContainer" class="stage-container" aria-live="polite"></div>
+      </main>
+    </div>
+  </div>
+
+  <div
+    id="modalOverlay"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="modalTitle"
+  >
+    <div id="modalContent" class="modal-card" role="document"></div>
+  </div>
+
+  <div
+    id="toastContainer"
+    class="toast-container"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+  <script defer src="src/js/core/security.js"></script>
+  <script defer src="src/js/core/catalog.js"></script>
+  <script defer src="src/js/core/store.js"></script>
+  <script defer src="src/js/views/stages-primary.js"></script>
+  <script defer src="src/js/views/stages-secondary.js"></script>
+  <script defer src="src/js/app.js"></script>
+</body>
+</html>

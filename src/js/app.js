@@ -1206,12 +1206,54 @@
     bootstrap();
   }
 
-  if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('Service Worker registrado com sucesso!'))
-      .catch((err) => console.log('Falha ao registrar Service Worker:', err));
-  });
-}
+  let deferredInstallPrompt = null;
 
+  global.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+
+    const actionsContainer = document.querySelector('.header-actions');
+    if (!actionsContainer || document.getElementById('pwaInstallBtn')) return;
+
+    const installBtn = document.createElement('button');
+    installBtn.type = 'button';
+    installBtn.id = 'pwaInstallBtn';
+    installBtn.className = 'btn btn--primary btn--sm';
+    installBtn.title = 'Instalar Aplicativo Nativo';
+    installBtn.innerHTML = `
+      <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v12" />
+        <polyline points="7 10 12 15 17 10" />
+        <path d="M5 21h14" />
+      </svg>
+      <span>Instalar App</span>
+    `;
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      const { outcome } = await deferredInstallPrompt.userChoice;
+      if (outcome === 'accepted') {
+        installBtn.remove();
+      }
+      deferredInstallPrompt = null;
+    });
+
+    actionsContainer.prepend(installBtn);
+  });
+
+  global.addEventListener('appinstalled', () => {
+    const installBtn = document.getElementById('pwaInstallBtn');
+    if (installBtn) installBtn.remove();
+    deferredInstallPrompt = null;
+    showToast('WAR ROOM 90D instalado como aplicativo nativo!', 'success');
+  });
+
+  if ('serviceWorker' in navigator) {
+    global.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .catch((err) => console.error('Falha ao registrar Service Worker:', err));
+    });
+  }
 })(window);

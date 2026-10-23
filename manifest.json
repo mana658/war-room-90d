@@ -3,7 +3,7 @@
   "name": "WAR ROOM 90D",
   "short_name": "WarRoom",
   "description": "Sistema de planejamento estratégico, controle financeiro tático e prospecção B2B.",
-  "start_url": "/?source=pwa",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -17,22 +17,10 @@
       "purpose": "any"
     },
     {
-      "src": "/src/img/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
       "src": "/src/img/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "/src/img/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }
